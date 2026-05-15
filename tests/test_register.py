@@ -26,3 +26,19 @@ class TestRegister:
         register_page.click_register_button()
 
         assert "Your account was created successfully" in register_page.get_success_message()
+
+    def test_register_with_empty_data(self, register_page):
+        register_page.click_register_button()
+
+        assert register_page.get_first_name_error() == "First name is required."
+        assert register_page.get_last_name_error() == "Last name is required."
+        assert register_page.get_address_error() == "Address is required."
+        assert register_page.get_city_error() == "City is required."
+        assert register_page.get_state_error() == "State is required."
+        assert register_page.get_zip_code_error() == "Zip Code is required."
+        assert register_page.get_ssn_error() == "Social Security Number is required."
+        assert register_page.get_username_error() == "Username is required."
+        assert register_page.get_password_error() == "Password is required."
+        assert register_page.get_confirm_password_error() == "Password confirmation is required."
+
+

@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class RegisterPage:
 
     #Locators
+    # --- Formulário ---
     FIRST_NAME_INPUT = (By.ID, "customer.firstName")
     LAST_NAME_INPUT = (By.ID, "customer.lastName")
     ADDRESS_INPUT = (By.ID, "customer.address.street")
@@ -17,6 +18,18 @@ class RegisterPage:
     PASSWORD_INPUT = (By.ID, "customer.password")
     PASSWORD_CONFIRM_INPUT = (By.ID, "repeatedPassword")
     REGISTER_BUTTON = (By.CSS_SELECTOR, "input[value='Register']")
+    # --- Alertas de erro do formulário ---
+    FIRST_NAME_ERROR = (By.ID, "customer.firstName.errors")
+    LAST_NAME_ERROR = (By.ID, "customer.lastName.errors")
+    ADDRESS_ERROR = (By.ID, "customer.address.street.errors")
+    CITY_ERROR = (By.ID, "customer.address.city.errors")
+    STATE_ERROR = (By.ID, "customer.address.state.errors")
+    ZIP_CODE_ERROR = (By.ID, "customer.address.zipCode.errors")
+    SSN_ERROR = (By.ID, "customer.ssn.errors")
+    USERNAME_ERROR = (By.ID, "customer.username.errors")
+    PASSWORD_ERROR = (By.ID, "customer.password.errors")
+    CONFIRM_PASSWORD_ERROR = (By.ID, "repeatedPassword.errors")
+    # --- Alertas da tela de confirmação ---
     SUCCESS_MESSAGE = (By.XPATH, "//div[@id='rightPanel']/p[contains(text(),'Your account was created successfully')]")
     ERROR_MESSAGE = (By.CSS_SELECTOR, "#rightPanel .error")
 
@@ -24,6 +37,7 @@ class RegisterPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
+    # --- Métodos de Preenchimento do Formulário ---
     def fill_first_name(self, first_name):
         field = self.wait.until(EC.visibility_of_element_located(self.FIRST_NAME_INPUT))
         field.send_keys(first_name)
@@ -72,6 +86,48 @@ class RegisterPage:
         register_button = self.wait.until(EC.element_to_be_clickable(self.REGISTER_BUTTON))
         register_button.click()
 
+    # --- Métodos de pegar alertas de erro do formulário ---
+    def get_first_name_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.FIRST_NAME_ERROR))
+        return message.text
+
+    def get_last_name_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.LAST_NAME_ERROR))
+        return message.text
+
+    def get_address_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.ADDRESS_ERROR))
+        return message.text
+
+    def get_city_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.CITY_ERROR))
+        return message.text
+
+    def get_state_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.STATE_ERROR))
+        return message.text
+
+    def get_zip_code_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.ZIP_CODE_ERROR))
+        return message.text
+
+    def get_ssn_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.SSN_ERROR))
+        return message.text
+
+    def get_username_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.USERNAME_ERROR))
+        return message.text
+
+    def get_password_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.PASSWORD_ERROR))
+        return message.text
+
+    def get_confirm_password_error(self):
+        message = self.wait.until(EC.visibility_of_element_located(self.CONFIRM_PASSWORD_ERROR))
+        return message.text
+
+    # --- Métodos de pegar alertas da tela de confirmação ---
     def get_success_message(self):
         message = self.wait.until(
             EC.visibility_of_element_located(self.SUCCESS_MESSAGE),
