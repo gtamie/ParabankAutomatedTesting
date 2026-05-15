@@ -1,0 +1,12 @@
+# Ambiente virtual
+.venv/
+
+# PyCharm
+.idea/
+
+# Screenshots gerados pelos testes
+screenshots/
+
+# Cache do Python
+__pycache__/
+*.pyc
