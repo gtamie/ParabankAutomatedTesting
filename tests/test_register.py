@@ -1,5 +1,4 @@
-from pages.home_page import HomePage
-from pages.register_page import RegisterPage
+import random
 
 
 class TestRegister:
@@ -10,6 +9,9 @@ class TestRegister:
 
 
     def test_register_with_valid_data(self, register_page):
+        username = f"john{random.randint(1000, 9999)}"
+        print(f"\nUsername gerado: {username}")
+
         register_page.fill_first_name("John")
         register_page.fill_last_name("Doe")
         register_page.fill_address("123 Main Street")
@@ -18,7 +20,7 @@ class TestRegister:
         register_page.fill_zip_code("10001")
         register_page.fill_phone("1234567890")
         register_page.fill_ssn("123-45-6789")
-        register_page.fill_username("test01")
+        register_page.fill_username(username)
         register_page.fill_password("Test@1234")
         register_page.confirm_password("Test@1234")
         register_page.click_register_button()
