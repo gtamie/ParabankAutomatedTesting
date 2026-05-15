@@ -73,7 +73,10 @@ class RegisterPage:
         register_button.click()
 
     def get_success_message(self):
-        message = self.wait.until(EC.visibility_of_element_located(self.SUCCESS_MESSAGE))
+        message = self.wait.until(
+            EC.visibility_of_element_located(self.SUCCESS_MESSAGE),
+            "Success message not found - registration may have failed"
+        )
         return message.text
 
     def get_error_message(self):
