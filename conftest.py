@@ -1,9 +1,10 @@
+import os
+
 import pytest
 
 from pages.home_page import HomePage
 from pages.register_page import RegisterPage
 from support.driver_factory import get_driver
-import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -33,7 +34,12 @@ def navigate_to_register(driver):
     home.open()
     home.go_to_register()
 
-
 @pytest.fixture(scope="function")
 def register_page(driver, navigate_to_register):
     return RegisterPage(driver)
+
+@pytest.fixture(scope="function")
+def login_page(driver):
+    home = HomePage(driver)
+    home.open()
+    return home
