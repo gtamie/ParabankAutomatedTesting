@@ -3,8 +3,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
 
+from pages.base_page import BasePage
 
-class OpenAccountPage:
+
+class OpenAccountPage(BasePage):
 
     # Locators
     ACCOUNT_TYPE_SELECT = (By.ID, "type")
@@ -16,14 +18,14 @@ class OpenAccountPage:
 
 
     def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        super().__init__(driver)
 
     def select_account_type(self, account_type):
         select = Select(self.wait.until(EC.visibility_of_element_located(self.ACCOUNT_TYPE_SELECT)))
         select.select_by_visible_text(account_type)
 
     def select_existing_account_by_index(self, index):
+        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#fromAccountId option")))
         select = Select(self.wait.until(EC.visibility_of_element_located(self.EXISTING_ACCOUNT_SELECT)))
         select.select_by_index(index)
 
