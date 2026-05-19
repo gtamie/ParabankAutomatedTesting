@@ -9,6 +9,7 @@ Automated testing project for [Parabank](https://parabank.parasoft.com/parabank/
 - Webdriver Manager
 
 ## Project Structure
+```
 parabank-automated-testing/
 ├── pages/
 │   ├── base_page.py
@@ -27,6 +28,7 @@ parabank-automated-testing/
 ├── pytest.ini
 ├── .env
 └── .gitignore
+```
 
 ## Test Coverage
 - **Register:** positive registration, empty fields validation, password mismatch validation
