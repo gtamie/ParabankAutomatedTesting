@@ -14,7 +14,6 @@ class HomePage:
 
     # --- Links ---
     REGISTER_LINK = (By.LINK_TEXT, "Register")
-    LOGOUT_LINK = (By.LINK_TEXT, "Log Out")
 
     def __init__(self, driver):
         self.driver = driver
@@ -41,13 +40,6 @@ class HomePage:
         self.fill_username(username)
         self.fill_password(password)
         self.click_login_button()
-
-    def wait_for_login_redirect(self):
-        self.wait.until(EC.url_to_be("https://parabank.parasoft.com/parabank/overview.htm"))
-
-    def is_logout_link_visible(self):
-        link = self.wait.until(EC.visibility_of_element_located(self.LOGOUT_LINK))
-        return link.is_displayed()
 
 # --- Métodos de redirecionamento ---
     def go_to_register(self):
