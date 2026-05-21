@@ -3,6 +3,7 @@ import os
 import pytest
 from dotenv import load_dotenv
 
+from pages.find_transactions_page import FindTransactionsPage
 from pages.home_page import HomePage
 from pages.open_account_page import OpenAccountPage
 from pages.overview_page import OverviewPage
@@ -69,3 +70,9 @@ def logged_in(driver):
 def open_account_page(driver, logged_in):
     logged_in.go_to_open_account()
     return OpenAccountPage(driver)
+
+
+@pytest.fixture(scope="function")
+def find_transactions_page(driver, logged_in):
+    logged_in.go_to_find_transactions()
+    return FindTransactionsPage(driver)
