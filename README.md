@@ -16,11 +16,13 @@ parabank-automated-testing/
 │   ├── home_page.py
 │   ├── overview_page.py
 │   ├── register_page.py
-│   └── open_account_page.py
+│   ├── open_account_page.py
+│   └── find_transactions_page.py
 ├── tests/
 │   ├── test_register.py
 │   ├── test_login.py
-│   └── test_open_account.py
+│   ├── test_open_account.py
+│   └── test_find_transactions.py
 ├── support/
 │   └── driver_factory.py
 ├── screenshots/
@@ -34,6 +36,11 @@ parabank-automated-testing/
 - **Register:** positive registration, empty fields validation, password mismatch validation
 - **Login:** login with valid credentials
 - **Open Account:** open new savings account and verify in accounts overview
+- **Find Transactions:** search transactions by date range and validate results
+
+## Test Cases
+Test cases documentation is available in the link below:
+[Test Cases - Google Sheets](https://docs.google.com/spreadsheets/d/1yIb9YEmD73JmwQKevNp-2e6VgbSqOJw1MsZ1F24UffU/edit?usp=sharing)
 
 ## Setup
 
@@ -69,4 +76,7 @@ pytest tests/test_register.py -v
 
 # Run a specific test
 pytest tests/test_register.py::TestRegister::test_register_with_valid_data -v
+
+# Run tests by test case id with marker
+pytest tests/ -v -m "PBK1C1"
 ```

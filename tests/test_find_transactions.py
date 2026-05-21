@@ -1,7 +1,11 @@
 from datetime import datetime
 
+import pytest
+
+
 class TestFindTransactions:
 
+    @pytest.mark.PBK4C1
     def test_find_transactions_by_date_range(self, find_transactions_page):
         from_date = "01-01-2024"
         to_date = "12-31-2026"
@@ -26,6 +30,7 @@ class TestFindTransactions:
         else:
             print("\nNenhuma transação encontrada no período — teste passou sem resultados")
 
+    @pytest.mark.PBK4C2
     def test_invalid_date_format(self, find_transactions_page):
         from_date = "01/01/2024"
         to_date = "12/31/2026"

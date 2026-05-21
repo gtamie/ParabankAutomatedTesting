@@ -1,7 +1,10 @@
+import pytest
+
 from pages.overview_page import OverviewPage
 
 class TestOpenAccount:
 
+    @pytest.mark.PBK3C1
     def test_open_savings_account(self, open_account_page, driver):
         open_account_page.select_account_type("SAVINGS")
         open_account_page.select_existing_account_by_index(0)

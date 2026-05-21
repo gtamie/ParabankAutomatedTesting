@@ -1,13 +1,16 @@
 import random
 
+import pytest
+
 
 class TestRegister:
 
+    @pytest.mark.PBK2C1
     def test_navigate_to_register(self, driver, navigate_to_register):
         print(f"\nURL atual: {driver.current_url}")
         assert "register" in driver.current_url.lower()
 
-
+    @pytest.mark.PBK2C2
     def test_register_with_valid_data(self, register_page):
         username = f"john{random.randint(1000, 9999)}"
         print(f"\nUsername gerado: {username}")
@@ -27,6 +30,7 @@ class TestRegister:
 
         assert "Your account was created successfully" in register_page.get_success_message()
 
+    @pytest.mark.PBK2C3
     def test_register_with_empty_data(self, register_page):
         register_page.click_register_button()
 
@@ -41,6 +45,7 @@ class TestRegister:
         assert register_page.get_password_error() == "Password is required."
         assert register_page.get_confirm_password_error() == "Password confirmation is required."
 
+    @pytest.mark.PBK2C4
     def test_register_with_different_passwords(self, register_page):
         username = f"john{random.randint(1000, 9999)}"
         print(f"\nUsername gerado: {username}")
